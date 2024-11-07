@@ -1,0 +1,85 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', sans-serif;
+	background: #1b1b1b;
+	color: #bcbcbc;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    overflow-x: auto; 
+}
+
+piano {
+	display: inline-flex;
+	background-color: black;
+	padding: 1em;
+	user-select: none;
+	align-items: flex-start;
+    min-width: 100%; // Ensure the piano is at least as wide as its container
+    width: max-content; // Ensure the piano expands to fit its content
+	border-radius: 1em;
+	margin: 1em;
+
+	key {
+		display: inline-block;
+		background-color: rgb(94, 94, 94);
+		color: black;
+		padding: 5em 1em;
+		margin: 0 0.1em;
+		font-size: 0.7em;
+		text-align: center;
+		font-weight: bold;
+		opacity: 0.8;
+		border-radius: 0.5em;
+
+		&:hover, &.playing {
+			opacity: 1;
+			cursor: pointer;
+		}
+
+		&.d1 {background-color: white; padding-bottom: 9em;}
+		&.d2 {background-color: yellow; padding-bottom: 8em;}
+		&.d3 {background-color: rgb(74, 255, 89); padding-bottom: 7em;}
+		&.d4 {background-color: orange; padding-bottom: 6em;}
+		&.d5 {background-color: rgb(123, 152, 255); padding-bottom: 5em;}
+		&.d6 {background-color: rgb(255, 123, 123); padding-bottom: 4em;}
+		&.d7 {background-color: rgb(255, 123, 255); padding-bottom: 3em;}
+		&.d8 {background-color: rgb(123, 255, 255); padding-bottom: 2em;}
+		&.d9 {background-color: rgb(255, 255, 123); padding-bottom: 1em;}
+		&.d10 {background-color: rgb(255, 123, 123); padding-bottom: 0em;}
+		&.d11 {background-color: rgb(123, 255, 123); padding-bottom: 0em;}
+		&.d12 {background-color: rgb(123, 123, 255); padding-bottom: 0em;}
+	}
+}
+
+log {
+	display: none;
+	flex-direction: column;
+	max-height: 300px;
+	overflow: scroll;
+}
+
+div {
+	font-weight: bold;
+	padding: 0 1em;
+	/* make the element stay on the left when the page scrolls to the right */
+	position: sticky;
+	left: 0;
+	top: 0; /* Ensure it sticks to the top */
+}
+
+input {
+	background: #070707;
+	color: #bcbcbc;
+	padding: 0.5em;
+	font-size: 1em;
+	border: none;
+	border-radius: 0.5em;
+	text-align: center;
+	font-weight: bold;
+	margin-right: 3em;
+}
