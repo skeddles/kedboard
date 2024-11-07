@@ -50,8 +50,11 @@ function createSamboard () {
 
 	//sort keys by octave then ratio
 	keysToAdd.sort((a,b) => {
-		if (b.divisor === 1) return 1;
 		if (a.octave === b.octave) {
+			// if this is the root note (1:1), put it first
+			if (a.divisor === 1) return -1;
+			if (b.divisor === 1) return 1;
+			
 			return a.instance/a.divisor - b.instance/b.divisor;
 		} else {
 			return a.octave - b.octave;
