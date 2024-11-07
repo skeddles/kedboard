@@ -1,0 +1,14 @@
+{
+  "name": "kedboard",
+  "version": "1.0.0",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "author": "skeddles",
+  "license": "UNLICENSED",
+  "description": "",
+  "dependencies": {
+    "sass": "^1.80.6"
+  }
+}
