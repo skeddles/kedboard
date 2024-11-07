@@ -70,6 +70,9 @@ div {
 	position: sticky;
 	left: 0;
 	top: 0; /* Ensure it sticks to the top */
+	display: flex;
+	align-items: center;
+
 }
 
 input {
@@ -82,4 +85,5 @@ input {
 	text-align: center;
 	font-weight: bold;
 	margin-right: 3em;
+	margin-left: 1em;
 }

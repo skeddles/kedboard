@@ -109,6 +109,8 @@ div {
   position: sticky;
   left: 0;
   top: 0; /* Ensure it sticks to the top */
+  display: flex;
+  align-items: center;
 }
 
 input {
@@ -121,20 +123,21 @@ input {
   text-align: center;
   font-weight: bold;
   margin-right: 3em;
+  margin-left: 1em;
 }</style>
 </head>
 <body>
 	
 
 <div>
+	Oct0 Root Freq: <input type="number" min="1" max="10000" name="root-freq" />
 	Octaves: <input type="number" min="1" max="12" name="octaves" />
 	Divisions: <input type="number" min="1" max="60" name="divisions" />
 </div>
 <piano></piano>
 
 <log></log>
-	<script>const ROOT_FREQUENCY = 60;
-const NAMES = ['whole', 'half', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'];
+	<script>const NAMES = ['whole', 'half', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'];
 const COUNTS = [];
 const PIANO_KEY_RATIOS = {
 	"1:1": "c",
@@ -157,11 +160,13 @@ const octavesInput = document.querySelector('input[name=octaves]');
 if (octavesInput) octavesInput.value = 5;
 const divisionsInput = document.querySelector('input[name=divisions]');
 if (divisionsInput) divisionsInput.value = 5; 
+const rootFrequencyInput = document.querySelector('input[name=root-freq]');
+if (rootFrequencyInput) rootFrequencyInput.value = 60;
 
 //when either input changes, recreate the samboard
 document.querySelector('input[name=octaves]').addEventListener('input', createSamboard);
 document.querySelector('input[name=divisions]').addEventListener('input', createSamboard);
-
+document.querySelector('input[name=root-freq]').addEventListener('input', createSamboard);
 
 createSamboard();
 
@@ -186,7 +191,10 @@ function createSamboard () {
 	//sort keys by octave then ratio
 	keysToAdd.sort((a,b) => {
 		if (a.octave === b.octave) {
+			// if this is the root note (1:1), put it first
+			if (a.divisor === 1) return -1;
 			if (b.divisor === 1) return 1;
+			
 			return a.instance/a.divisor - b.instance/b.divisor;
 		} else {
 			return a.octave - b.octave;
@@ -197,7 +205,7 @@ function createSamboard () {
 }
 
 function freqFromRatio (o,a,b) {
-	return ROOT_FREQUENCY * Math.pow(2, i) * (a/b);
+	return rootFrequencyInput.value * Math.pow(2, i) * (a/b);
 }
 
 function createKeyboard (rootFrequency, numKeys,) {
@@ -212,12 +220,12 @@ ocatve - the current octave of the note
 divisor - divide this octave into this many equal parts (2 = divide into halves, 3 = thirds, etc)
 instance - the number of divisors to count (2 = 2nd quarter, 3 = 3rd quarter, etc) (this cant be equal or greater to the divisor, otherwise you're just entering a new octave)
 */
-function addKey (octave, divisor, instance=1, rootFrequency=ROOT_FREQUENCY) {
+function addKey (octave, divisor, instance=1, rootFrequency=rootFrequencyInput.value) {
 	if (instance > divisor) throw 'instance cannot be greater than divisor';
 
 	const ratio = divisor===1?1:((divisor+instance)/divisor);
 	const octaveOffset = Math.pow(2, octave);
-	const frequency = ROOT_FREQUENCY * octaveOffset * ratio;
+	const frequency = rootFrequencyInput.value * octaveOffset * ratio;
 
 	var key = document.createElement('key');
 	const keyText = `
@@ -233,7 +241,7 @@ function addKey (octave, divisor, instance=1, rootFrequency=ROOT_FREQUENCY) {
 	key.octave = octave;
 
 	document.querySelector('piano').appendChild(key);
-}
+} 
 
 //add event listener to left click for all elements 
 document.addEventListener('click', function (event) {
@@ -247,7 +255,7 @@ document.addEventListener('click', function (event) {
 });
 
 function getFrequencyOfNote (note) {
-	return ROOT_FREQUENCY * Math.pow(2, note / 12);
+	return rootFrequencyInput.value * Math.pow(2, note / 12);
 }
 
 function playTone(frequency) {
