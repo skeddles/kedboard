@@ -16,6 +16,8 @@ There is of course some reprocussions from doing it like this. The normal keyboa
 
 I also adjusted the height and color of each key based on it's ratio, so it's easier to see the relationships between notes. Taller notes are using simpler ratios (smaller divisor).
 
+It's not really meant to sound good - it just uses an extremely simple sine wav with a static length / decay - it's mainly just a proof of concept for a unique keyboard layout, not a real instrument.
+
 ## Controls 
 
 Click on keys to play that note.
