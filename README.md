@@ -14,6 +14,8 @@ All the notes on this keyboard are calculated with perfect ratios.
 
 There is of course some reprocussions from doing it like this. The normal keyboard is divided into 12 equally spaced notes (KIND OF...), but the divisions in this one are not equal, despite looking like it. This also means it's always tuned to the key of your root note, you can't play in other keys, because the distance between notes is different, so moving notes up and down will sound out of tune.
 
+I also adjusted the height and color of each key based on it's ratio, so it's easier to see the relationships between notes. Taller notes are using simpler ratios (smaller divisor).
+
 ## Controls 
 
 Click on keys to play that note.
@@ -24,5 +26,5 @@ Or tap a keyboard key to play a note. The keys are mapped so that each row is a 
 
 You can adjust the settings to change the keyboard. 
 - **Root Note**: The note that the keyboard is tuned to, the frequency(hertz) of the root note on the lowest octave I've set the default to 60hz because it's the lowest number that can is divisible by 2, 3, and 5 (which results in less decimals for Hertz, which is easier to remember/calculate).
-- **Octaves**: The number of octaves to display on the keyboard. With the default frequency, the second octave is roughly C4. 
-- **Divisions**: Every key is a based on a ratio of the octaves root frequency. This number describes the largest division that should be used to create keys - all divisions up to that number will be used. By default it is 5 which gets you 10 keys per octave, using halves, thirds, fourths and fifths.
+- **Octaves**: The number of octaves to display on the keyboard. With the default frequency, oct2 is 240Hz, roughly middle C, and oct4 is decently high note, but you could use 6 or 7 to get as high as a piano. If you use a lower root requency, you'll have to add more octaves to get higher notes.
+- **Divisions**: Every key is a based on a ratio of the octaves root frequency. This number describes the largest division that should be used to create keys - all divisions up to that number will be used. By default it is 5 which gets you 10 keys per octave, using halves, thirds, fourths and fifths. If you set it to 12, you will get roughly all the same keys as a standard keyboard (but because of "temperament", they will be slightly off).
