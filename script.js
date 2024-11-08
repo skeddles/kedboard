@@ -15,6 +15,12 @@ const PIANO_KEY_RATIOS = {
 	"9:5": "a#",
 	"15:8": "b"
 };
+const KEYBOARD_LETTERS = [
+	['z','x','c','v','b','n','m',',','.','/'],
+	['a','s','d','f','g','h','j','k','l',';','\''],
+	['q','w','e','r','t','y','u','i','o','p','[',']','\\'],
+];
+
  
 //input config
 const octavesInput = document.querySelector('input[name=octaves]');
@@ -149,12 +155,6 @@ function log () {
 log('piano started');
 
 
-keyboardLetters = [
-	['q','w','e','r','t','y','u','i','o','p','[',']','\\'],
-	['a','s','d','f','g','h','j','k','l',';','\''],
-	['z','x','c','v','b','n','m',',','.','/']
-];
-
 const pressedKeys = new Set();
 
 const KEYBOARD_OCTAVE_OFFSET = 1;
@@ -164,7 +164,7 @@ document.addEventListener('keydown', function (event) {
     if (pressedKeys.has(letterPressed)) return; // If the key is already pressed, do nothing
     pressedKeys.add(letterPressed); // Add the key to the set
 
-	const key = getKeyElementFromKeyboardKey(letterPressed);
+	const key = getKeyElementFromKeyboardKey(letterPressed); 
 	if (!key) return;
 
     playTone(key.frequency);
@@ -178,9 +178,9 @@ document.addEventListener('keyup', function (event) {
 });
 
 function getKeyElementFromKeyboardKey (keyboardKey) {
-    const letterRow = keyboardLetters.findIndex(row => row.includes(keyboardKey));
+    const letterRow = KEYBOARD_LETTERS.findIndex(row => row.includes(keyboardKey));
     if (letterRow === -1) return;
-    const letterIndex = keyboardLetters[letterRow].indexOf(keyboardKey);
+    const letterIndex = KEYBOARD_LETTERS[letterRow].indexOf(keyboardKey);
     const pianoKeys = Array.from(document.querySelector('piano').children);
     const octaveKeyIndex = pianoKeys.findIndex(key => key.octave-KEYBOARD_OCTAVE_OFFSET === letterRow && key.className === 'd1');
     const keyIndex = octaveKeyIndex + letterIndex;

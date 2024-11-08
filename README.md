@@ -14,6 +14,8 @@ All the notes on this keyboard are calculated with perfect ratios.
 
 There is of course some reprocussions from doing it like this. The normal keyboard is divided into 12 equally spaced notes (KIND OF...), but the divisions in this one are not equal, despite looking like it. This also means it's always tuned to the key of your root note, you can't play in other keys, because the distance between notes is different, so moving notes up and down will sound out of tune.
 
+For reference, the keys that match a note from a standard keyboard (before temperament) have that key written at the bottom.
+
 I also adjusted the height and color of each key based on it's ratio, so it's easier to see the relationships between notes. Taller notes are using simpler ratios (smaller divisor).
 
 It's not really meant to sound good - it just uses an extremely simple sine wav with a static length / decay - it's mainly just a proof of concept for a unique keyboard layout, not a real instrument.
